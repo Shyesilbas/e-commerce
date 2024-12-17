@@ -9,5 +9,12 @@ spring:
           uri: lb:http://CUSTOMER-SERVICE
           predicates:
             - Path=/api/customers/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                rateLimiter.replenishRate: 5
+                rateLimiter.burstCapacity: 5
+                rateLimiter.requestedTokens: 1
+
 server:
   port: 8222

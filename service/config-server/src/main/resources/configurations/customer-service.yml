@@ -1,0 +1,16 @@
+datasource:
+  username: postgres
+  password: 1234
+  url: jdbc:postgresql://localhost:5432/customer
+jpa:
+  hibernate:
+    ddl-auto: update
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
+
+server:
+  port: 8070
