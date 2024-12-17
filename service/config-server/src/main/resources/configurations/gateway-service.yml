@@ -6,15 +6,9 @@ spring:
           enabled: true
       routes:
         - id: customer-service
-          uri: lb:http://CUSTOMER-SERVICE
+          uri: http://localhost:8070
           predicates:
             - Path=/api/customers/**
-          filters:
-            - name: RequestRateLimiter
-              args:
-                rateLimiter.replenishRate: 5
-                rateLimiter.burstCapacity: 5
-                rateLimiter.requestedTokens: 1
 
 server:
   port: 8222

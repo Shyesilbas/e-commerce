@@ -34,7 +34,10 @@ public class Address {
     @Column(name = "country", nullable = false)
     private String country;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "description",nullable = false)
+    private String description;
+
+    @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 

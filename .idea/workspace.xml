@@ -4,16 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Config Server , Server Discovery and Gateway created">
-      <change afterPath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/gateway/src/main/java/com/serhat/gateway/config/RateLimitConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/gateway/src/main/java/com/serhat/gateway/config/RateLimitFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/gateway/src/main/java/com/serhat/gateway/service/RateLimitService.java" afterDir="false" />
+    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Started Creating Customer service">
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/controller/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/object/AddressDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/request/CreateCustomerRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/response/CreateCustomerResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/EmailExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/PhoneNumberExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/repository/AddressRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/CustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e85825f3-fa1f-4635-9c56-d8af81940276.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e85825f3-fa1f-4635-9c56-d8af81940276.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e85825f3-fa1f-4635-9c56-d8af81940276/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e85825f3-fa1f-4635-9c56-d8af81940276/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service/config-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/config-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/config-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/customer-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/customer-service.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/gateway-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/gateway-service.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/repository/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/discovery/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/discovery/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service/gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/gateway/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +42,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
+        <option value="Record" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -30,15 +52,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2qLYocpUVkqiPXReXIJRpsWgsbC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -47,30 +69,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.ConfigServerApplication.executor": "Run",
-    "Spring Boot.DiscoveryApplication.executor": "Run",
-    "Spring Boot.GatewayApplication.executor": "Run",
-    "jdk.selected.JAVA_MODULE": "corretto-17",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.CustomerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DiscoveryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.serhat.customer.exception" />
+      <recent name="com.serhat.customer.dto.request" />
+      <recent name="com.serhat.customer.dto.response" />
+      <recent name="com.serhat.customer.entity" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/service" />
     </key>
@@ -84,10 +119,17 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ConfigServerApplication">
+  <component name="RunManager" selected="Spring Boot.CustomerApplication">
     <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.serhat.configserver.ConfigServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="customer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.serhat.customer.CustomerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -106,6 +148,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ConfigServerApplication" />
+      <item itemvalue="Spring Boot.DiscoveryApplication" />
+      <item itemvalue="Spring Boot.CustomerApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -122,7 +170,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1734443498946</updated>
-      <workItem from="1734443499946" duration="3523000" />
+      <workItem from="1734443499946" duration="6827000" />
+      <workItem from="1734453569249" duration="5078000" />
+      <workItem from="1734461908019" duration="2335000" />
     </task>
     <task id="LOCAL-00001" summary="Config Server , Server Discovery and Gateway created">
       <option name="closed" value="true" />
@@ -132,14 +182,34 @@
       <option name="project" value="LOCAL" />
       <updated>1734445438950</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Started Creating Customer service">
+      <option name="closed" value="true" />
+      <created>1734448745932</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1734448745932</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Config Server , Server Discovery and Gateway created" />
-    <option name="LAST_COMMIT_MESSAGE" value="Config Server , Server Discovery and Gateway created" />
+    <MESSAGE value="Started Creating Customer service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started Creating Customer service" />
   </component>
 </project>
