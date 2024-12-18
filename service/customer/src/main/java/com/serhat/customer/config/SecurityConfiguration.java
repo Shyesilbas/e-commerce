@@ -24,6 +24,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         return   httpSecurity.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/customer/create").permitAll()
+                        .requestMatchers("/api/customers/createAdmin").permitAll()
                         .requestMatchers("/api/customers/testUrl").hasRole("CUSTOMER")
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)

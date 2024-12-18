@@ -4,9 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Logging:&#10;Implement Audit Logging using Aspect Oriented Programming">
+    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Module:&#10;Product module created , Security Configuration and OpenApi configuration implemented">
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/request/CreateAdminRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/response/CreateAdminResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Admin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/repository/AdminRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/component/AuditLogAspect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/controller/PriceHistoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/controller/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/dto/object/ProductDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/dto/request/AddProductRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/dto/response/AddProductResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/entity/AuditLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/entity/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/entity/PriceHistory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/entity/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/exception/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/exception/ProductExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/repository/AuditLogRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/repository/PriceHistoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/repository/ProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/service/AuditLogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e85825f3-fa1f-4635-9c56-d8af81940276.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e85825f3-fa1f-4635-9c56-d8af81940276.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e85825f3-fa1f-4635-9c56-d8af81940276/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e85825f3-fa1f-4635-9c56-d8af81940276/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/AuditLogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/AuditLogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/gateway-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/gateway-service.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/component/AuditLogAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/component/AuditLogAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/KeycloakCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/KeycloakCustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/config/SecurityConfiguration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +52,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Record" />
         <option value="Interface" />
+        <option value="Record" />
         <option value="Class" />
       </list>
     </option>
@@ -43,46 +78,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.CustomerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DiscoveryApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.GatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.ConfigServerApplication.executor": "Run",
+    "Spring Boot.CustomerApplication.executor": "Run",
+    "Spring Boot.DiscoveryApplication.executor": "Run",
+    "Spring Boot.GatewayApplication.executor": "Run",
+    "Spring Boot.ProductApplication.executor": "Run",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/serhat/IdeaProjects/e-commerce/service/product/src/main/java/com/serhat/product",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.serhat.product.exception" />
       <recent name="com.serhat.customer.dto.response" />
-      <recent name="com.serhat.customer.exception" />
       <recent name="com.serhat.customer.dto.request" />
-      <recent name="com.serhat.customer.dto.object" />
-      <recent name="com.serhat.customer.entity" />
+      <recent name="com.serhat.product.dto.object" />
+      <recent name="com.serhat.product.dto.request" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/service" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.serhat.product.service" />
+      <recent name="com.serhat.product.config" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -94,7 +138,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.CustomerApplication">
+  <component name="RunManager" selected="Spring Boot.ProductApplication">
     <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.serhat.configserver.ConfigServerApplication" />
@@ -123,10 +167,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProductApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="product" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.serhat.product.ProductApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Spring Boot.ConfigServerApplication" />
       <item itemvalue="Spring Boot.DiscoveryApplication" />
       <item itemvalue="Spring Boot.CustomerApplication" />
+      <item itemvalue="Spring Boot.ProductApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
     </list>
   </component>
@@ -205,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734542079184</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Module:&#10;Product module created , Security Configuration and OpenApi configuration implemented">
+      <option name="closed" value="true" />
+      <created>1734544838988</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1734544838988</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +290,7 @@
     <MESSAGE value="Methods created for the Customer Entity" />
     <MESSAGE value="Method Updates , Exceptions added For Customer service" />
     <MESSAGE value="Logging:&#10;Implement Audit Logging using Aspect Oriented Programming" />
-    <option name="LAST_COMMIT_MESSAGE" value="Logging:&#10;Implement Audit Logging using Aspect Oriented Programming" />
+    <MESSAGE value="Module:&#10;Product module created , Security Configuration and OpenApi configuration implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Module:&#10;Product module created , Security Configuration and OpenApi configuration implemented" />
   </component>
 </project>

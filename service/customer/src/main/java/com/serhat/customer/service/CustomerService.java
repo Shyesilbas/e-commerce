@@ -7,6 +7,7 @@ import com.serhat.customer.dto.response.*;
 import com.serhat.customer.entity.*;
 import com.serhat.customer.exception.*;
 import com.serhat.customer.repository.AddressRepository;
+import com.serhat.customer.repository.AdminRepository;
 import com.serhat.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final AddressRepository addressRepository;
     private final KeycloakCustomerService keycloakCustomerService;
+    private final AdminRepository adminRepository;
 
 
     public Customer findCustomer(Principal principal){
@@ -89,6 +91,45 @@ public class CustomerService {
                 customer.getSurname()
         );
     }
+
+    @Transactional
+    public CreateAdminResponse createAdmin(Principal principal , CreateAdminRequest request){
+        boolean isPhoneExists = adminRepository.findByPhone(request.phone()).isPresent();
+        if(isPhoneExists){
+            log.warn("Phone {} already exists", request.phone());
+            throw new PhoneNumberExistsException("Account found for the phone number : "+request.phone());
+        }
+        boolean isEmailExists = adminRepository.findByEmail(request.email()).isPresent();
+        if(isEmailExists){
+            log.warn("Email {} already exists", request.email());
+            throw new EmailExistsException("Account found for the email : "+request.email());
+        }
+
+        Admin admin = Admin.builder()
+                .name(request.name())
+                .surname(request.surname())
+                .email(request.email())
+                .password(request.password())
+                .phone(request.phone())
+                .birthdate(request.birthdate())
+                .role(Role.ADMIN)
+                .joinDate(LocalDateTime.now())
+
+                .build();
+
+
+        adminRepository.save(admin);
+        keycloakCustomerService.createKeycloakAdmin(admin);
+        log.info("Customer created with name: {}, email: {}", admin.getName(), admin.getEmail());
+
+        return new CreateAdminResponse(
+                "Account Created Successfully , Welcome",
+                admin.getEmail(),
+                admin.getName(),
+                admin.getSurname()
+        );
+    }
+
 
     @Transactional
     public UpdatePhoneNumberResponse updatePhoneNumber(Principal principal, UpdatePhoneNumberRequest request) {

@@ -23,6 +23,11 @@ public class CustomerController {
     public ResponseEntity<CreateCustomerResponse> createCustomer(@Valid @RequestBody CreateCustomerRequest request){
         return ResponseEntity.ok(customerService.createCustomer(request));
     }
+
+    @PostMapping("/createAdmin")
+    public ResponseEntity<CreateAdminResponse> createAdmin(Principal principal,@Valid @RequestBody CreateAdminRequest request){
+        return ResponseEntity.ok(customerService.createAdmin(principal,request));
+    }
     @PostMapping("/addAddress")
     public ResponseEntity<AddAddressResponse> addAddress(Principal principal , @Valid @RequestBody AddAddressRequest request){
         return ResponseEntity.ok(customerService.addAddress(principal,request));

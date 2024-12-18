@@ -1,5 +1,6 @@
 package com.serhat.customer.service;
 
+import com.serhat.customer.entity.Admin;
 import com.serhat.customer.entity.Customer;
 import com.serhat.customer.entity.Role;
 import com.serhat.customer.exception.CustomerNotFoundException;
@@ -61,7 +62,39 @@ public class KeycloakCustomerService {
             log.error("An error occurred while creating Keycloak User", e);
         }
     }
+    public void createKeycloakAdmin(Admin admin) {
+        try {
+            UserRepresentation user = new UserRepresentation();
+            user.setUsername(admin.getName());
+            user.setFirstName(admin.getName());
+            user.setLastName(admin.getSurname());
+            user.setEmail(admin.getEmail());
+            user.setEmailVerified(true);
+            user.setEnabled(true);
 
+            CredentialRepresentation credentials = new CredentialRepresentation();
+            credentials.setType(CredentialRepresentation.PASSWORD);
+            credentials.setValue(admin.getPassword());
+            credentials.setTemporary(false);
+            user.setCredentials(Collections.singletonList(credentials));
+
+            Response response = keycloak.realm("eCommerce").users().create(user);
+
+            if (response.getStatus() == 201) {
+                log.info("Keycloak User Created: {}", admin.getName());
+
+                String userId = getUserIdByEmail(admin.getEmail());
+
+                String roleName = admin.getRole().name();
+                createRoleIfNotExist(roleName);
+                assignRoleToUser(userId, roleName);
+            } else {
+                log.error("Keycloak user is not created. Error code: {}", response.getStatus());
+            }
+        } catch (Exception e) {
+            log.error("An error occurred while creating Keycloak User", e);
+        }
+    }
     public void updateKeycloakEmail(String email, String newEmail) {
         try {
             String userId = getUserIdByEmail(email);

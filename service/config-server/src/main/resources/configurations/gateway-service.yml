@@ -13,6 +13,11 @@ spring:
           uri: http://localhost:8060
           predicates:
             - Path=/api/products/**
+        - id: product-service-price
+          uri: http://localhost:8060
+          predicates:
+          - Path=/api/priceHistory/**
+
 
 server:
   port: 8222

@@ -22,8 +22,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         return   httpSecurity.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/customer/create").permitAll()
-                        .requestMatchers("/api/customers/testUrl").hasRole("CUSTOMER")
+                        .requestMatchers("/api/products/add").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .oauth2ResourceServer(oauth2-> oauth2
