@@ -10,10 +10,6 @@ import com.serhat.customer.repository.AddressRepository;
 import com.serhat.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.Cache;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +25,6 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final AddressRepository addressRepository;
     private final KeycloakCustomerService keycloakCustomerService;
-    private final CacheManager cacheManager;
 
 
     public Customer findCustomer(Principal principal){
