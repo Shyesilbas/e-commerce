@@ -4,21 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Security:&#10;Implement Keycloak Service and Role-based Authentication in Security Configuration">
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/request/UpdateEmailRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/request/UpdatePhoneNumberRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/response/UpdateEmailResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/response/UpdatePhoneNumberResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/AccountAlreadyExistsForPhoneNumberException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/CustomerNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/SameRequestException.java" afterDir="false" />
+    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Security and Methods:&#10;Updating Email at both keycloak and database (Consistency) and Updating Phone">
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/object/CustomerDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/request/AddAddressRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/request/UpdateAccountStatusRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/request/UpdateMembershipRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/response/AddAddressResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/response/UpdateAccountStatusResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/response/UpdateMembershipResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/AddressNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/MissmatchException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/config/SecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/controller/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/repository/CustomerRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/KeycloakCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/KeycloakCustomerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +29,8 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -87,9 +86,10 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.serhat.customer.dto.response" />
-      <recent name="com.serhat.customer.dto.request" />
       <recent name="com.serhat.customer.exception" />
+      <recent name="com.serhat.customer.dto.request" />
+      <recent name="com.serhat.customer.dto.response" />
+      <recent name="com.serhat.customer.dto.object" />
       <recent name="com.serhat.customer.entity" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -184,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734524563290</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Security and Methods:&#10;Updating Email at both keycloak and database (Consistency) and Updating Phone">
+      <option name="closed" value="true" />
+      <created>1734530859670</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1734530859670</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,6 +213,7 @@
     <MESSAGE value="Config Server , Server Discovery and Gateway created" />
     <MESSAGE value="Started Creating Customer service" />
     <MESSAGE value="Security:&#10;Implement Keycloak Service and Role-based Authentication in Security Configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Security:&#10;Implement Keycloak Service and Role-based Authentication in Security Configuration" />
+    <MESSAGE value="Security and Methods:&#10;Updating Email at both keycloak and database (Consistency) and Updating Phone" />
+    <option name="LAST_COMMIT_MESSAGE" value="Security and Methods:&#10;Updating Email at both keycloak and database (Consistency) and Updating Phone" />
   </component>
 </project>

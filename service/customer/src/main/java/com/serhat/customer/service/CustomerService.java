@@ -1,11 +1,9 @@
 package com.serhat.customer.service;
 
-import com.serhat.customer.dto.request.CreateCustomerRequest;
-import com.serhat.customer.dto.request.UpdateEmailRequest;
-import com.serhat.customer.dto.request.UpdatePhoneNumberRequest;
-import com.serhat.customer.dto.response.CreateCustomerResponse;
-import com.serhat.customer.dto.response.UpdateEmailResponse;
-import com.serhat.customer.dto.response.UpdatePhoneNumberResponse;
+import com.serhat.customer.dto.object.AddressDTO;
+import com.serhat.customer.dto.object.CustomerDTO;
+import com.serhat.customer.dto.request.*;
+import com.serhat.customer.dto.response.*;
 import com.serhat.customer.entity.*;
 import com.serhat.customer.exception.*;
 import com.serhat.customer.repository.AddressRepository;
@@ -19,6 +17,7 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -26,6 +25,13 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final AddressRepository addressRepository;
     private final KeycloakCustomerService keycloakCustomerService;
+
+    public Customer findCustomer(Principal principal){
+        String email = principal.getName();
+        log.info("Customer : "+email);
+        return customerRepository.findByLoweCaseEmail(email)
+                .orElseThrow(()-> new CustomerNotFoundException("Customer not found. Please check your credentials."));
+    }
 
     @Transactional
     public CreateCustomerResponse createCustomer(CreateCustomerRequest request){
@@ -85,13 +91,10 @@ public class CustomerService {
 
     @Transactional
     public UpdatePhoneNumberResponse updatePhoneNumber(Principal principal, UpdatePhoneNumberRequest request) {
-        String email = principal.getName();
-        log.info("Customer : "+email);
-        Customer customer = customerRepository.findByLoweCaseEmail(email)
-                .orElseThrow(() -> new CustomerNotFoundException("Customer not found. Please check your credentials."));
+        Customer customer = findCustomer(principal);
 
         log.info("Customer '{}' with email '{}' is changing their phone number from '{}' to '{}'",
-                customer.getName(), email, customer.getPhone(), request.newPhoneNumber());
+                customer.getName(), customer.getEmail(), customer.getPhone(), request.newPhoneNumber());
 
         String currentPhoneNumber = customer.getPhone();
         String requestedPhoneNumber = request.newPhoneNumber();
@@ -117,12 +120,9 @@ public class CustomerService {
 
     @Transactional
     public UpdateEmailResponse updateEmail(Principal principal, UpdateEmailRequest request) {
-        String email = principal.getName();
-        Customer customer = customerRepository.findByLoweCaseEmail(email)
-                .orElseThrow(() -> new CustomerNotFoundException("Customer not found. Please check your credentials."));
-
+       Customer customer = findCustomer(principal);
         log.info("Customer '{}' with email '{}' is changing their email  to '{}'",
-                customer.getName(), email, request.newEmail());
+                customer.getName(), customer.getEmail(), request.newEmail());
 
         String currentEmail = customer.getEmail();
         String requestedEmail = request.newEmail();
@@ -147,6 +147,150 @@ public class CustomerService {
                 requestedEmail
         );
     }
+
+    @Transactional
+    public UpdateMembershipResponse updateMembership(Principal principal, UpdateMembershipRequest request) {
+        Customer customer = findCustomer(principal);
+
+        log.info("Customer '{}' with email '{}' is changing their Membership plan  to '{}'",
+                customer.getName(), customer.getEmail(), request.newMembershipPlan());
+
+        MembershipPlan currentMembershipPlan = customer.getMembershipPlan();
+        MembershipPlan requestedMembershipPlan = request.newMembershipPlan();
+
+        if (currentMembershipPlan.equals(requestedMembershipPlan)) {
+            throw new SameRequestException("The requested Membership Plan is the same as the current one.");
+        }
+
+        customer.setMembershipPlan(requestedMembershipPlan);
+        customerRepository.save(customer);
+
+        log.info("Membership Plan successfully updated to '{}'", requestedMembershipPlan);
+
+        return new UpdateMembershipResponse(
+                "Email updated successfully.",
+                requestedMembershipPlan
+        );
+    }
+
+    @Transactional
+    public UpdateAccountStatusResponse updateAccountStatus(Principal principal, UpdateAccountStatusRequest request) {
+        Customer customer = findCustomer(principal);
+
+        log.info("Customer '{}' with email '{}' is changing their Account status to '{}'",
+                customer.getName(), customer.getEmail(), request.accountStatus());
+
+        AccountStatus currentAccountStatus = customer.getAccountStatus();
+        AccountStatus requestedAccountStatus = request.accountStatus();
+
+        if (currentAccountStatus.equals(requestedAccountStatus)) {
+            throw new SameRequestException("The requested Account Status is the same as the current one.");
+        }
+
+        customer.setAccountStatus(requestedAccountStatus);
+        customerRepository.save(customer);
+
+        log.info("Account status successfully updated to '{}'", requestedAccountStatus);
+
+        return new UpdateAccountStatusResponse(
+                "Account status updated successfully.",
+                requestedAccountStatus
+        );
+    }
+
+    public CustomerDTO customerInformation(Principal principal){
+        Customer customer = findCustomer(principal);
+        log.info(customer.getEmail() + " fetching their info");
+
+        List<AddressDTO> addressDTOs = customer.getAddresses()
+                .stream()
+                .map(address -> new AddressDTO(
+                        address.getStreet(),
+                        address.getCity(),
+                        address.getState(),
+                        address.getCountry(),
+                        address.getPostalCode(),
+                        address.getAddressType(),
+                        address.getDescription()
+                ))
+                .toList();
+
+
+        return new CustomerDTO(
+                customer.getName(),
+                customer.getSurname(),
+                customer.getEmail(),
+                customer.getMembershipPlan(),
+                customer.getTotalOrders(),
+                customer.getJoinDate(),
+                customer.getBirthdate(),
+                addressDTOs
+        );
+    }
+
+    public List<AddressDTO> displayAddresses(Principal p){
+        Customer customer = findCustomer(p);
+        List<AddressDTO> addresses = customer.getAddresses()
+                .stream()
+                .map(address -> new AddressDTO(
+                        address.getStreet(),
+                        address.getCity(),
+                        address.getState(),
+                        address.getCountry(),
+                        address.getPostalCode(),
+                        address.getAddressType(),
+                        address.getDescription()
+                ))
+                .toList();
+
+        return addresses;
+    }
+
+    @Transactional
+    public AddAddressResponse addAddress(Principal principal, AddAddressRequest request) {
+        Customer customer = findCustomer(principal);
+
+        Address newAddress = Address.builder()
+                .street(request.addressDTO().street())
+                .city(request.addressDTO().city())
+                .state(request.addressDTO().state())
+                .country(request.addressDTO().country())
+                .postalCode(request.addressDTO().postalCode())
+                .addressType(request.addressDTO().addressType())
+                .description(request.addressDTO().description())
+                .customer(customer)
+                .build();
+
+        customer.getAddresses().add(newAddress);
+        customerRepository.save(customer);
+
+
+        return new AddAddressResponse(
+                "Address added successfully",
+                newAddress.getDescription()
+        );
+    }
+
+    @Transactional
+    public String deleteAddress (Principal principal , Integer addressId){
+        Customer customer = findCustomer(principal);
+        List<Address> addresses = customer.getAddresses();
+        Address address = addressRepository.findById(addressId)
+                .orElseThrow(()-> new AddressNotFoundException("Address not found by id : "+addressId));
+
+        if (!addresses.contains(address)) {
+            throw new MissmatchException("None of your addresses id is ."+addressId);
+        }
+        addresses.remove(address);
+        customer.setAddresses(addresses);
+
+        addressRepository.delete(address);
+
+        log.info("Address with id '{}' has been deleted for customer '{}'", addressId, customer.getEmail());
+        return "Address with id " + addressId + " deleted successfully.";
+
+    }
+
 
 
 
