@@ -3,6 +3,8 @@ package com.serhat.customer.dto.object;
 import com.serhat.customer.entity.AddressType;
 import jakarta.validation.constraints.NotBlank;
 
+import java.io.Serializable;
+
 public record AddressDTO(
         @NotBlank(message = "Street is required")
         String street,
@@ -18,5 +20,5 @@ public record AddressDTO(
         AddressType addressType,
         @NotBlank(message = "Description is required")
         String description
-) {
+) implements Serializable {
 }

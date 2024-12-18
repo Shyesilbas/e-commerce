@@ -10,6 +10,10 @@ import com.serhat.customer.repository.AddressRepository;
 import com.serhat.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +29,8 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final AddressRepository addressRepository;
     private final KeycloakCustomerService keycloakCustomerService;
+    private final CacheManager cacheManager;
+
 
     public Customer findCustomer(Principal principal){
         String email = principal.getName();
@@ -173,6 +179,53 @@ public class CustomerService {
         );
     }
 
+
+    @Transactional
+    public UpdateAddressResponse updateAddress(Principal principal, Integer addressId, UpdateAddressRequest request) {
+        Customer customer = findCustomer(principal);
+
+        Address address = addressRepository.findById(addressId)
+                .orElseThrow(() -> new AddressNotFoundException("Address not found by id: " + addressId));
+
+        if (!customer.getAddresses().contains(address)) {
+            throw new MissmatchException("This address does not belong to the logged-in customer.");
+        }
+
+        address.setStreet(request.addressDTO().street());
+        address.setCity(request.addressDTO().city());
+        address.setState(request.addressDTO().state());
+        address.setCountry(request.addressDTO().country());
+        address.setPostalCode(request.addressDTO().postalCode());
+        address.setAddressType(request.addressDTO().addressType());
+        address.setDescription(request.addressDTO().description());
+
+        addressRepository.save(address);
+        log.info("Address with id '{}' has been updated for customer '{}'", addressId, customer.getEmail());
+        return new UpdateAddressResponse("Address updated successfully.", address.getDescription());
+    }
+
+    @Transactional
+    public UpdatePasswordResponse updatePassword(Principal principal, UpdatePasswordRequest request) {
+        Customer customer = findCustomer(principal);
+        String currentPassword = customer.getPassword();
+        String requestedPassword = request.newPassword();
+
+        if (!currentPassword.equals(request.oldPassword())) {
+            throw new InvalidPasswordException("The provided old password is incorrect.");
+        }
+
+        if (request.newPassword().equals(request.oldPassword())) {
+            throw new SameRequestException("The new password cannot be the same as the old password.");
+        }
+
+        customer.setPassword(requestedPassword);
+        customerRepository.save(customer);
+
+        return new UpdatePasswordResponse("Password updated successfully.");
+    }
+
+
+
     @Transactional
     public UpdateAccountStatusResponse updateAccountStatus(Principal principal, UpdateAccountStatusRequest request) {
         Customer customer = findCustomer(principal);
@@ -228,7 +281,8 @@ public class CustomerService {
         );
     }
 
-    public List<AddressDTO> displayAddresses(Principal p){
+    public List<AddressDTO> getAddresses(Principal p){
+
         Customer customer = findCustomer(p);
         List<AddressDTO> addresses = customer.getAddresses()
                 .stream()
@@ -242,7 +296,6 @@ public class CustomerService {
                         address.getDescription()
                 ))
                 .toList();
-
         return addresses;
     }
 

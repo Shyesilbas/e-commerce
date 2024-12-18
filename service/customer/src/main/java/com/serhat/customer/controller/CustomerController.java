@@ -56,8 +56,8 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.customerInformation(p));
     }
     @GetMapping("/address")
-    public ResponseEntity<List<AddressDTO>> displayAddresses(Principal p){
-        return ResponseEntity.ok(customerService.displayAddresses(p));
+    public ResponseEntity<List<AddressDTO>> getAddresses(Principal p){
+        return ResponseEntity.ok(customerService.getAddresses(p));
     }
 
     @GetMapping("/testUrl")

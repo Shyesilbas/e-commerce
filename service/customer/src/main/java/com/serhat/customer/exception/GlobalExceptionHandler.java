@@ -71,8 +71,17 @@ public class GlobalExceptionHandler {
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(InvalidPasswordException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidPasswordException(InvalidPasswordException ex) {
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST.value()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
     @ExceptionHandler(MissmatchException.class)
-    public ResponseEntity<ErrorResponse> handleMissmatchExceptionn(MissmatchException ex) {
+    public ResponseEntity<ErrorResponse> handleMissmatchException(MissmatchException ex) {
 
         ErrorResponse errorResponse = new ErrorResponse(
                 ex.getMessage(),
