@@ -56,7 +56,7 @@ public class SecurityConfiguration {
                     .collect(Collectors.toList());
         });
 
-        jwtAuthenticationConverter.setPrincipalClaimName("preferred_username");
+        jwtAuthenticationConverter.setPrincipalClaimName("email");
 
         return jwtAuthenticationConverter;
     }

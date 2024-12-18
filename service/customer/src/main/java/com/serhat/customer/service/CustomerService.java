@@ -1,10 +1,13 @@
 package com.serhat.customer.service;
 
 import com.serhat.customer.dto.request.CreateCustomerRequest;
+import com.serhat.customer.dto.request.UpdateEmailRequest;
+import com.serhat.customer.dto.request.UpdatePhoneNumberRequest;
 import com.serhat.customer.dto.response.CreateCustomerResponse;
+import com.serhat.customer.dto.response.UpdateEmailResponse;
+import com.serhat.customer.dto.response.UpdatePhoneNumberResponse;
 import com.serhat.customer.entity.*;
-import com.serhat.customer.exception.EmailExistsException;
-import com.serhat.customer.exception.PhoneNumberExistsException;
+import com.serhat.customer.exception.*;
 import com.serhat.customer.repository.AddressRepository;
 import com.serhat.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -79,6 +83,70 @@ public class CustomerService {
         );
     }
 
+    @Transactional
+    public UpdatePhoneNumberResponse updatePhoneNumber(Principal principal, UpdatePhoneNumberRequest request) {
+        String email = principal.getName();
+        log.info("Customer : "+email);
+        Customer customer = customerRepository.findByLoweCaseEmail(email)
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found. Please check your credentials."));
+
+        log.info("Customer '{}' with email '{}' is changing their phone number from '{}' to '{}'",
+                customer.getName(), email, customer.getPhone(), request.newPhoneNumber());
+
+        String currentPhoneNumber = customer.getPhone();
+        String requestedPhoneNumber = request.newPhoneNumber();
+
+        if (currentPhoneNumber.equals(requestedPhoneNumber)) {
+            throw new SameRequestException("The requested phone number is the same as the current one.");
+        }
+        boolean isRequestedPhoneExists = customerRepository.findByPhone(requestedPhoneNumber).isPresent();
+        if (isRequestedPhoneExists) {
+            throw new AccountAlreadyExistsForPhoneNumberException(
+                    String.format("An account already exists for the phone number: %s", requestedPhoneNumber));
+        }
+        customer.setPhone(requestedPhoneNumber);
+        customerRepository.save(customer);
+
+        log.info("Phone number successfully updated to '{}'", requestedPhoneNumber);
+
+        return new UpdatePhoneNumberResponse(
+                "Phone number updated successfully.",
+                requestedPhoneNumber
+        );
+    }
+
+    @Transactional
+    public UpdateEmailResponse updateEmail(Principal principal, UpdateEmailRequest request) {
+        String email = principal.getName();
+        Customer customer = customerRepository.findByLoweCaseEmail(email)
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found. Please check your credentials."));
+
+        log.info("Customer '{}' with email '{}' is changing their email  to '{}'",
+                customer.getName(), email, request.newEmail());
+
+        String currentEmail = customer.getEmail();
+        String requestedEmail = request.newEmail();
+
+        if (currentEmail.equals(requestedEmail)) {
+            throw new SameRequestException("The requested Email is the same as the current one.");
+        }
+        boolean isRequestedEmailExists = customerRepository.findByEmail(requestedEmail).isPresent();
+        if (isRequestedEmailExists) {
+            throw new AccountAlreadyExistsForPhoneNumberException(
+                    String.format("An account already exists for the Email: %s", requestedEmail));
+        }
+        customer.setEmail(requestedEmail);
+        customerRepository.save(customer);
+        keycloakCustomerService.updateKeycloakEmail(currentEmail,requestedEmail);
+
+        log.info("Email successfully updated to '{}'", requestedEmail);
+        log.info("Email updated on Keycloak successfully.");
+
+        return new UpdateEmailResponse(
+                "Email updated successfully.",
+                requestedEmail
+        );
+    }
 
 
 

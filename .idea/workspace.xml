@@ -4,18 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Started Creating Customer service">
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/config/KeycloakConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/config/SecurityConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/KeycloakCustomerService.java" afterDir="false" />
+    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Security:&#10;Implement Keycloak Service and Role-based Authentication in Security Configuration">
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/request/UpdateEmailRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/request/UpdatePhoneNumberRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/response/UpdateEmailResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/response/UpdatePhoneNumberResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/AccountAlreadyExistsForPhoneNumberException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/CustomerNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/SameRequestException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/customer-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/customer-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/customer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/config/SecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/repository/CustomerRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/customer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/KeycloakCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/KeycloakCustomerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,10 +28,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Record" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -84,10 +87,10 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.serhat.customer.entity" />
-      <recent name="com.serhat.customer.exception" />
-      <recent name="com.serhat.customer.dto.request" />
       <recent name="com.serhat.customer.dto.response" />
+      <recent name="com.serhat.customer.dto.request" />
+      <recent name="com.serhat.customer.exception" />
+      <recent name="com.serhat.customer.entity" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/service" />
@@ -173,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734448745932</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Security:&#10;Implement Keycloak Service and Role-based Authentication in Security Configuration">
+      <option name="closed" value="true" />
+      <created>1734524563290</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1734524563290</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +204,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Config Server , Server Discovery and Gateway created" />
     <MESSAGE value="Started Creating Customer service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started Creating Customer service" />
+    <MESSAGE value="Security:&#10;Implement Keycloak Service and Role-based Authentication in Security Configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Security:&#10;Implement Keycloak Service and Role-based Authentication in Security Configuration" />
   </component>
 </project>

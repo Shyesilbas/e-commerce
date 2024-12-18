@@ -2,6 +2,8 @@ package com.serhat.customer.service;
 
 import com.serhat.customer.entity.Customer;
 import com.serhat.customer.entity.Role;
+import com.serhat.customer.exception.CustomerNotFoundException;
+import com.serhat.customer.exception.SameRequestException;
 import com.serhat.customer.repository.CustomerRepository;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.core.Response;
@@ -57,6 +59,32 @@ public class KeycloakCustomerService {
             }
         } catch (Exception e) {
             log.error("An error occurred while creating Keycloak User", e);
+        }
+    }
+
+    public void updateKeycloakEmail(String email, String newEmail) {
+        try {
+            String userId = getUserIdByEmail(email);
+
+            UserRepresentation user = keycloak.realm("eCommerce")
+                    .users()
+                    .get(userId)
+                    .toRepresentation();
+
+            if (user.getEmail().equals(newEmail)) {
+                throw new SameRequestException("The requested email is the same as the current one.");
+            }
+
+            user.setEmail(newEmail);
+            keycloak.realm("eCommerce").users().get(userId).update(user);
+
+            log.info("Keycloak email successfully updated to '{}'", newEmail);
+
+        } catch (NotFoundException e) {
+            log.error("User not found with email: {}", email, e);
+            throw new CustomerNotFoundException("User not found in Keycloak.");
+        } catch (Exception e) {
+            log.error("An error occurred while updating email in Keycloak", e);
         }
     }
 
