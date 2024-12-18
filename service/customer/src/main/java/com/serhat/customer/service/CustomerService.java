@@ -2,10 +2,7 @@ package com.serhat.customer.service;
 
 import com.serhat.customer.dto.request.CreateCustomerRequest;
 import com.serhat.customer.dto.response.CreateCustomerResponse;
-import com.serhat.customer.entity.AccountStatus;
-import com.serhat.customer.entity.Address;
-import com.serhat.customer.entity.Customer;
-import com.serhat.customer.entity.MembershipPlan;
+import com.serhat.customer.entity.*;
 import com.serhat.customer.exception.EmailExistsException;
 import com.serhat.customer.exception.PhoneNumberExistsException;
 import com.serhat.customer.repository.AddressRepository;
@@ -24,6 +21,7 @@ import java.util.List;
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private final AddressRepository addressRepository;
+    private final KeycloakCustomerService keycloakCustomerService;
 
     @Transactional
     public CreateCustomerResponse createCustomer(CreateCustomerRequest request){
@@ -49,7 +47,9 @@ public class CustomerService {
                 .birthdate(request.birthdate())
                 .accountStatus(AccountStatus.ACTIVE)
                 .totalOrders(0)
+                .role(Role.CUSTOMER)
                 .joinDate(LocalDateTime.now())
+
                 .build();
 
         List<Address> addresses = request.addresses()
@@ -68,6 +68,7 @@ public class CustomerService {
         customer.setAddresses(addresses);
 
         customerRepository.save(customer);
+        keycloakCustomerService.createKeycloakUser(customer);
         log.info("Customer created with name: {}, email: {}", customer.getName(), customer.getEmail());
 
         return new CreateCustomerResponse(
@@ -77,6 +78,8 @@ public class CustomerService {
                 customer.getSurname()
         );
     }
+
+
 
 
 }

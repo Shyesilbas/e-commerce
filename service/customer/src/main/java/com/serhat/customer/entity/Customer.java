@@ -62,4 +62,8 @@ public class Customer {
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Address> addresses;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role",nullable = false)
+    private Role role;
+
 }

@@ -5,34 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Started Creating Customer service">
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/controller/CustomerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/object/AddressDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/request/CreateCustomerRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/dto/response/CreateCustomerResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/EmailExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/ErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/exception/PhoneNumberExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/repository/AddressRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e85825f3-fa1f-4635-9c56-d8af81940276.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e85825f3-fa1f-4635-9c56-d8af81940276.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e85825f3-fa1f-4635-9c56-d8af81940276/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e85825f3-fa1f-4635-9c56-d8af81940276/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/config/KeycloakConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/config/SecurityConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/KeycloakCustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/config-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/config-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/customer-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/customer-service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/gateway-service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/config-server/src/main/resources/configurations/gateway-service.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/customer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/controller/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/entity/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/repository/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/java/com/serhat/customer/service/CustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/customer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/customer/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/discovery/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/discovery/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service/gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service/gateway/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,10 +25,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Record" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -101,10 +84,10 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.serhat.customer.entity" />
       <recent name="com.serhat.customer.exception" />
       <recent name="com.serhat.customer.dto.request" />
       <recent name="com.serhat.customer.dto.response" />
-      <recent name="com.serhat.customer.entity" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/service" />
