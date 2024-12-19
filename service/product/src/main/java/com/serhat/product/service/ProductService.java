@@ -1,9 +1,16 @@
 package com.serhat.product.service;
 
+import com.serhat.product.dto.object.ProductDto;
 import com.serhat.product.dto.request.AddProductRequest;
+import com.serhat.product.dto.request.DeleteProductRequest;
+import com.serhat.product.dto.request.UpdatePriceRequest;
 import com.serhat.product.dto.response.AddProductResponse;
+import com.serhat.product.dto.response.DeleteProductResponse;
+import com.serhat.product.dto.response.UpdatePriceResponse;
+import com.serhat.product.entity.PriceHistory;
 import com.serhat.product.entity.Product;
 import com.serhat.product.exception.ProductExistsException;
+import com.serhat.product.exception.ProductNotFoundException;
 import com.serhat.product.repository.PriceHistoryRepository;
 import com.serhat.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.security.Principal;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -48,7 +57,67 @@ public class ProductService {
                 "Product Added successfully",
                 product.getProductCode()
         );
+    }
 
+
+    @Transactional
+    public DeleteProductResponse deleteProduct (Principal principal , String productCode){
+        String name = principal.getName();
+        Product product = productRepository.findProductByProductCode(productCode)
+                .orElseThrow(()-> new ProductNotFoundException("Product not found by Product code : "+productCode));
+
+        productRepository.delete(product);
+        log.info("Product Deleted by"+name);
+        return new DeleteProductResponse(
+                "Product Deleted Successfully",
+                product.getProductCode()
+        );
+    }
+
+
+    public ProductDto productInfo(Principal principal , String productCode){
+        Product product = productRepository.findProductByProductCode(productCode)
+                .orElseThrow(()-> new ProductNotFoundException("Product not found "+productCode));
+
+      return new ProductDto(
+              product.getName(),
+              product.getProductCode(),
+              product.getYear(),
+              product.getPrice(),
+              product.getDescription(),
+              product.getQuantity(),
+              product.getCategory(),
+              product.getCountryOfOrigin()
+      );
+    }
+
+
+    @Transactional
+    public UpdatePriceResponse updatePrice (UpdatePriceRequest request){
+        Product product = productRepository.findProductByProductCode(request.productCode())
+                .orElseThrow(()-> new ProductNotFoundException("Product Not Found : "+request.productCode()));
+
+        BigDecimal currentPrice = product.getPrice();
+        BigDecimal requestedPrice = request.updatedPrice();
+        PriceHistory priceHistory = PriceHistory.builder()
+                .product(product)
+                .original_price(currentPrice)
+                .updated_price(requestedPrice)
+                .validFrom(LocalDateTime.now())
+                .validTo(LocalDateTime.now().plusWeeks(1))
+                .updatedAt(LocalDateTime.now())
+                .build();
+
+        String difference = priceHistory.calculatePriceDifference(currentPrice,requestedPrice);
+        product.setPrice(requestedPrice);
+        priceHistory.setPriceDifference(difference);
+        priceHistoryRepository.save(priceHistory);
+        productRepository.save(product);
+
+        return new UpdatePriceResponse(
+                "Price Updated Successfully",
+                difference
+        );
 
     }
 

@@ -41,9 +41,9 @@ public class PriceHistory {
     private LocalDateTime updatedAt;
 
     @Column(name = "price_difference", nullable = false)
-    private String priceDifference;
+    private String priceDifference = calculatePriceDifference(original_price,updated_price);
 
-    public void calculatePriceDifference(BigDecimal oldPrice, BigDecimal newPrice) {
+    public String calculatePriceDifference(BigDecimal oldPrice, BigDecimal newPrice) {
         if (oldPrice != null && newPrice != null && oldPrice.compareTo(BigDecimal.ZERO) > 0) {
             BigDecimal difference = newPrice.subtract(oldPrice);
             BigDecimal percentageDifference = difference.divide(oldPrice, 4, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
@@ -52,6 +52,7 @@ public class PriceHistory {
                     + percentageDifference.setScale(2, RoundingMode.HALF_UP)
                     + "%";
         }
+        return priceDifference;
     }
 
 

@@ -23,6 +23,9 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         return   httpSecurity.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/products/add").hasRole("ADMIN")
+                        .requestMatchers("/api/products/updatePrice").hasRole("ADMIN")
+                        .requestMatchers("/api/products/delete").hasRole("ADMIN")
+                        .requestMatchers("/api/products/info").permitAll()
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .oauth2ResourceServer(oauth2-> oauth2
