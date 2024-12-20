@@ -49,8 +49,11 @@ public class AuditLogAspect {
                 case "deleteProduct" -> args[1] instanceof String productCode ?
                         "Product Code: " +productCode : "";
 
-                case "listByCategory" -> args[1] instanceof Category category ?
+                case "listByCategory" -> args[0] instanceof Category category ?
                         "Category: " +category : "";
+
+                case "findProductByName" -> args[0] instanceof String productName ?
+                        "Product Name: " +productName : "";
 
                 case "listByPriceRange" -> args[0] instanceof BigDecimal minPrice ?
                         (args.length > 1 && args[1] instanceof BigDecimal maxPrice ?

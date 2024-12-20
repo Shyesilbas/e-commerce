@@ -19,4 +19,6 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
     long countByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice);
 
     long countByCategory(Category category);
+
+    List<Product> findProductByName(String productName);
 }

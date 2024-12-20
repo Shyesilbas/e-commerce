@@ -56,4 +56,13 @@ public class ProductController {
     public ResponseEntity<Long> totalProductForPriceRange (@RequestParam BigDecimal minPrice , @RequestParam BigDecimal maxPrice){
         return ResponseEntity.ok(productService.countProductByPriceRange(minPrice, maxPrice));
     }
+    @GetMapping("/totalProductForCategory")
+    public ResponseEntity<Long> totalProductForCategory (@RequestParam Category category){
+        return ResponseEntity.ok(productService.countProductByCategory(category));
+    }
+
+    @GetMapping("/findByName")
+    public ResponseEntity<List<ProductDto>> findProductByName(@RequestParam String productName){
+        return ResponseEntity.ok(productService.findProductByName(productName));
+    }
 }

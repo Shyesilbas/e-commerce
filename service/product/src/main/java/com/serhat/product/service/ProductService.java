@@ -167,6 +167,25 @@ public class ProductService {
                 .toList();
     }
 
+    public List<ProductDto> findProductByName(String productName){
+        List<Product> products = productRepository.findProductByName(productName);
+        if(products.isEmpty()){
+            return Collections.emptyList();
+        }
+        return products.stream()
+                .map(product -> new ProductDto(
+                        product.getName(),
+                        product.getProductCode(),
+                        product.getYear(),
+                        product.getPrice(),
+                        product.getDescription(),
+                        product.getQuantity(),
+                        product.getCategory(),
+                        product.getCountryOfOrigin()
+                ))
+                .toList();
+    }
+
     public long countProductByPriceRange(@NotNull BigDecimal minPrice, @NotNull BigDecimal maxPrice) {
         return productRepository.countByPriceBetween(minPrice, maxPrice);
     }
