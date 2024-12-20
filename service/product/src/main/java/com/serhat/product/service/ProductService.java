@@ -7,12 +7,15 @@ import com.serhat.product.dto.request.UpdatePriceRequest;
 import com.serhat.product.dto.response.AddProductResponse;
 import com.serhat.product.dto.response.DeleteProductResponse;
 import com.serhat.product.dto.response.UpdatePriceResponse;
+import com.serhat.product.entity.Category;
 import com.serhat.product.entity.PriceHistory;
 import com.serhat.product.entity.Product;
+import com.serhat.product.exception.IllegalPriceRangeException;
 import com.serhat.product.exception.ProductExistsException;
 import com.serhat.product.exception.ProductNotFoundException;
 import com.serhat.product.repository.PriceHistoryRepository;
 import com.serhat.product.repository.ProductRepository;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -118,7 +123,58 @@ public class ProductService {
                 "Price Updated Successfully",
                 difference
         );
-
     }
+
+    public List<ProductDto> listProductByCategory (Category category){
+        List<Product> products = productRepository.findByCategory(category);
+        if(products.isEmpty()){
+            return Collections.emptyList();
+        }
+        return products.stream()
+                .map(product -> new ProductDto(
+                        product.getName(),
+                        product.getProductCode(),
+                        product.getYear(),
+                        product.getPrice(),
+                        product.getDescription(),
+                        product.getQuantity(),
+                        product.getCategory(),
+                        product.getCountryOfOrigin()
+                ))
+                .toList();
+    }
+
+    public List<ProductDto> listProductByPriceRange(@NotNull BigDecimal minPrice ,@NotNull BigDecimal maxPrice){
+        if(minPrice.compareTo(maxPrice)>0){
+            throw new IllegalPriceRangeException("Minimum price cannot be higher than maximum price");
+        }
+        List<Product> products = productRepository.findByPriceBetween(minPrice,maxPrice);
+        if(products.isEmpty()){
+           return Collections.emptyList();
+        }
+
+        return products.stream()
+                .map(product -> new ProductDto(
+                        product.getName(),
+                        product.getProductCode(),
+                        product.getYear(),
+                        product.getPrice(),
+                        product.getDescription(),
+                        product.getQuantity(),
+                        product.getCategory(),
+                        product.getCountryOfOrigin()
+                ))
+                .toList();
+    }
+
+    public long countProductByPriceRange(@NotNull BigDecimal minPrice, @NotNull BigDecimal maxPrice) {
+        return productRepository.countByPriceBetween(minPrice, maxPrice);
+    }
+
+    public long countProductByCategory(Category category) {
+        return productRepository.countByCategory(category);
+    }
+
+
 
 }

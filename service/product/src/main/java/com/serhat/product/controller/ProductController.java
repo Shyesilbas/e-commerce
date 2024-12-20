@@ -6,13 +6,16 @@ import com.serhat.product.dto.request.UpdatePriceRequest;
 import com.serhat.product.dto.response.AddProductResponse;
 import com.serhat.product.dto.response.DeleteProductResponse;
 import com.serhat.product.dto.response.UpdatePriceResponse;
+import com.serhat.product.entity.Category;
 import com.serhat.product.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -38,5 +41,19 @@ public class ProductController {
     @GetMapping("/info")
     public ResponseEntity<ProductDto> productInformation(Principal principal,@RequestParam String productCode){
         return ResponseEntity.ok(productService.productInfo(principal,productCode));
+    }
+
+    @GetMapping("/listByCategory")
+    public ResponseEntity<List<ProductDto>> listByCategory(@RequestParam Category category){
+        return ResponseEntity.ok(productService.listProductByCategory(category));
+    }
+    @GetMapping("/listByPriceRange")
+    public ResponseEntity<List<ProductDto>> listByPriceRange(@RequestParam BigDecimal minPrice , @RequestParam BigDecimal maxPrice){
+        return ResponseEntity.ok(productService.listProductByPriceRange(minPrice, maxPrice));
+    }
+
+    @GetMapping("/totalProductForPriceRange")
+    public ResponseEntity<Long> totalProductForPriceRange (@RequestParam BigDecimal minPrice , @RequestParam BigDecimal maxPrice){
+        return ResponseEntity.ok(productService.countProductByPriceRange(minPrice, maxPrice));
     }
 }

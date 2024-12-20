@@ -4,6 +4,7 @@ import com.serhat.product.dto.object.ProductDto;
 import com.serhat.product.dto.request.AddProductRequest;
 import com.serhat.product.dto.request.DeleteProductRequest;
 import com.serhat.product.dto.request.UpdatePriceRequest;
+import com.serhat.product.entity.Category;
 import com.serhat.product.service.AuditLogService;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.JoinPoint;
@@ -13,6 +14,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Aspect
@@ -46,6 +48,16 @@ public class AuditLogAspect {
 
                 case "deleteProduct" -> args[1] instanceof String productCode ?
                         "Product Code: " +productCode : "";
+
+                case "listByCategory" -> args[1] instanceof Category category ?
+                        "Category: " +category : "";
+
+                case "listByPriceRange" -> args[0] instanceof BigDecimal minPrice ?
+                        (args.length > 1 && args[1] instanceof BigDecimal maxPrice ?
+                                "Min Price: " + minPrice + " Max Price: " + maxPrice :
+                                "Min Price: " + minPrice)
+                        : "";
+
 
                 default -> "";
             };

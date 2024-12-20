@@ -16,7 +16,8 @@ public enum Category {
         FURNITURE,
         MUSIC,
         ART,
-        SOFTWARE
+        SOFTWARE,
+        CLOTHING
     }
 
 
