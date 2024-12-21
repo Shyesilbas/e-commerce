@@ -1,18 +1,22 @@
 package com.serhat.product.service;
 
+import com.serhat.product.dto.object.PriceHistoryDTO;
 import com.serhat.product.dto.object.ProductDto;
 import com.serhat.product.dto.request.AddProductRequest;
 import com.serhat.product.dto.request.DeleteProductRequest;
 import com.serhat.product.dto.request.UpdatePriceRequest;
+import com.serhat.product.dto.request.UpdateQuantityRequest;
 import com.serhat.product.dto.response.AddProductResponse;
 import com.serhat.product.dto.response.DeleteProductResponse;
 import com.serhat.product.dto.response.UpdatePriceResponse;
+import com.serhat.product.dto.response.UpdateQuantityResponse;
 import com.serhat.product.entity.Category;
 import com.serhat.product.entity.PriceHistory;
 import com.serhat.product.entity.Product;
 import com.serhat.product.exception.IllegalPriceRangeException;
 import com.serhat.product.exception.ProductExistsException;
 import com.serhat.product.exception.ProductNotFoundException;
+import com.serhat.product.exception.SameQuantityRequestException;
 import com.serhat.product.repository.PriceHistoryRepository;
 import com.serhat.product.repository.ProductRepository;
 import jakarta.validation.constraints.NotNull;
@@ -125,6 +129,32 @@ public class ProductService {
         );
     }
 
+    @Transactional
+    public UpdateQuantityResponse updateQuantity(UpdateQuantityRequest request){
+        Product product = productRepository.findProductByProductCode(request.productCode())
+                .orElseThrow(()-> new ProductNotFoundException("Product Not Found"));
+
+        int currentQuantity = product.getQuantity();
+        int requestedQuantity = request.newQuantity();
+
+        if(currentQuantity == requestedQuantity){
+            throw new SameQuantityRequestException("Current quantity already same as requested quantity");
+        }
+        if(requestedQuantity<0){
+            throw new IllegalPriceRangeException("quantity cannot be negative");
+        }
+        product.setQuantity(requestedQuantity);
+        log.info("Product quantity , with product code : "+product.getProductCode() + " updated ");
+        productRepository.save(product);
+
+        return new UpdateQuantityResponse(
+                "Quantity Updated",
+                product.getProductCode(),
+                product.getQuantity()
+        );
+    }
+
+
     public List<ProductDto> listProductByCategory (Category category){
         List<Product> products = productRepository.findByCategory(category);
         if(products.isEmpty()){
@@ -194,6 +224,28 @@ public class ProductService {
         return productRepository.countByCategory(category);
     }
 
+    public List<PriceHistoryDTO> priceHistoryForProduct(String productCode){
+        Product product = productRepository.findProductByProductCode(productCode)
+                .orElseThrow(()-> new ProductNotFoundException("Product Not Found!"));
+
+        List<PriceHistory> priceHistories = priceHistoryRepository.findByProduct(product);
+        if(priceHistories.isEmpty()){
+            return Collections.emptyList();
+        }
+
+        return priceHistories.stream()
+                .map(priceHistory -> new PriceHistoryDTO(
+                        priceHistory.getProduct().getProductCode(),
+                        priceHistory.getOriginal_price(),
+                        priceHistory.getUpdated_price(),
+                        priceHistory.getPriceDifference(),
+                        priceHistory.getValidFrom(),
+                        priceHistory.getValidTo()
+                ))
+                .toList();
+
+
+    }
 
 
 }

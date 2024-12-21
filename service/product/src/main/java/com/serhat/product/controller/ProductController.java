@@ -1,11 +1,14 @@
 package com.serhat.product.controller;
 
+import com.serhat.product.dto.object.PriceHistoryDTO;
 import com.serhat.product.dto.object.ProductDto;
 import com.serhat.product.dto.request.AddProductRequest;
 import com.serhat.product.dto.request.UpdatePriceRequest;
+import com.serhat.product.dto.request.UpdateQuantityRequest;
 import com.serhat.product.dto.response.AddProductResponse;
 import com.serhat.product.dto.response.DeleteProductResponse;
 import com.serhat.product.dto.response.UpdatePriceResponse;
+import com.serhat.product.dto.response.UpdateQuantityResponse;
 import com.serhat.product.entity.Category;
 import com.serhat.product.service.ProductService;
 import jakarta.validation.Valid;
@@ -38,6 +41,11 @@ public class ProductController {
         return ResponseEntity.ok(productService.updatePrice(request));
     }
 
+    @PutMapping("/updateQuantity")
+    public ResponseEntity<UpdateQuantityResponse> updateQuantity (@RequestBody UpdateQuantityRequest request){
+        return ResponseEntity.ok(productService.updateQuantity(request));
+    }
+
     @GetMapping("/info")
     public ResponseEntity<ProductDto> productInformation(Principal principal,@RequestParam String productCode){
         return ResponseEntity.ok(productService.productInfo(principal,productCode));
@@ -59,6 +67,11 @@ public class ProductController {
     @GetMapping("/totalProductForCategory")
     public ResponseEntity<Long> totalProductForCategory (@RequestParam Category category){
         return ResponseEntity.ok(productService.countProductByCategory(category));
+    }
+
+    @GetMapping("/priceHistoryForProduct")
+    public ResponseEntity<List<PriceHistoryDTO>> priceHistoryForProduct (@RequestParam String productCode){
+        return ResponseEntity.ok(productService.priceHistoryForProduct(productCode));
     }
 
     @GetMapping("/findByName")
