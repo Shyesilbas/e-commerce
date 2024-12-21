@@ -11,28 +11,22 @@
         <module name="discovery" />
         <module name="gateway" />
       </profile>
-      <profile name="Annotation profile for product" enabled="true">
+      <profile name="Annotation profile for Order" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath>
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
+        <module name="Order" />
         <module name="product" />
-      </profile>
-      <profile name="Annotation profile for customer" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath>
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-        </processorPath>
         <module name="customer" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Order" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="customer" options="-parameters" />
       <module name="discovery" options="-parameters" />

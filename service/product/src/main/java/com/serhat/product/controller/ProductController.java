@@ -10,6 +10,9 @@ import com.serhat.product.dto.response.DeleteProductResponse;
 import com.serhat.product.dto.response.UpdatePriceResponse;
 import com.serhat.product.dto.response.UpdateQuantityResponse;
 import com.serhat.product.entity.Category;
+import com.serhat.product.entity.Product;
+import com.serhat.product.exception.ProductNotFoundException;
+import com.serhat.product.repository.ProductRepository;
 import com.serhat.product.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +28,7 @@ import java.util.List;
 @RequestMapping("/api/products")
 public class ProductController {
     private final ProductService productService;
+    private final ProductRepository productRepository;
 
     @PostMapping("/add")
     public ResponseEntity<AddProductResponse> addProduct(Principal principal , @Valid @RequestBody AddProductRequest request){
@@ -47,8 +51,8 @@ public class ProductController {
     }
 
     @GetMapping("/info")
-    public ResponseEntity<ProductDto> productInformation(Principal principal,@RequestParam String productCode){
-        return ResponseEntity.ok(productService.productInfo(principal,productCode));
+    public ResponseEntity<ProductDto> productInformation(@RequestParam String productCode){
+        return ResponseEntity.ok(productService.productInfo(productCode));
     }
 
     @GetMapping("/listByCategory")
@@ -78,4 +82,17 @@ public class ProductController {
     public ResponseEntity<List<ProductDto>> findProductByName(@RequestParam String productName){
         return ResponseEntity.ok(productService.findProductByName(productName));
     }
+
+    @PutMapping("/updateQuantityAfterOrder")
+    public ResponseEntity<Void> updateProductQuantity(@RequestParam String productCode, @RequestParam int decrement) {
+        Product product = productRepository.findProductByProductCode(productCode)
+                .orElseThrow(() -> new ProductNotFoundException("Product not found!"));
+        if (product.getQuantity() < decrement) {
+            throw new IllegalStateException("Not enough quantity available!");
+        }
+        product.setQuantity(product.getQuantity() - decrement);
+        productRepository.save(product);
+        return ResponseEntity.ok().build();
+    }
+
 }

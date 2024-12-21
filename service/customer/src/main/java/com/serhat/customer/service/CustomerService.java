@@ -294,6 +294,7 @@ public class CustomerService {
         List<AddressDTO> addressDTOs = customer.getAddresses()
                 .stream()
                 .map(address -> new AddressDTO(
+                        address.getAddressId(),
                         address.getStreet(),
                         address.getCity(),
                         address.getState(),
@@ -306,6 +307,7 @@ public class CustomerService {
 
 
         return new CustomerDTO(
+                customer.getCustomerId(),
                 customer.getName(),
                 customer.getSurname(),
                 customer.getEmail(),
@@ -323,6 +325,7 @@ public class CustomerService {
         List<AddressDTO> addresses = customer.getAddresses()
                 .stream()
                 .map(address -> new AddressDTO(
+                        address.getAddressId(),
                         address.getStreet(),
                         address.getCity(),
                         address.getState(),
@@ -333,6 +336,21 @@ public class CustomerService {
                 ))
                 .toList();
         return addresses;
+    }
+
+    public AddressDTO getAddressesById(Integer addressId){
+        Address address = addressRepository.findById(addressId).orElseThrow();
+
+        return new AddressDTO(
+                address.getAddressId(),
+                address.getStreet(),
+                address.getCity(),
+                address.getState(),
+                address.getCountry(),
+                address.getPostalCode(),
+                address.getAddressType(),
+                address.getDescription()
+        );
     }
 
     @Transactional

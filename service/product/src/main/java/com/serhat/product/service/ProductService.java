@@ -84,7 +84,7 @@ public class ProductService {
     }
 
 
-    public ProductDto productInfo(Principal principal , String productCode){
+    public ProductDto productInfo(String productCode){
         Product product = productRepository.findProductByProductCode(productCode)
                 .orElseThrow(()-> new ProductNotFoundException("Product not found "+productCode));
 

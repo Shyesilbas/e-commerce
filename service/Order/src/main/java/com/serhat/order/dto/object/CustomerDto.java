@@ -1,12 +1,12 @@
-package com.serhat.customer.dto.object;
+package com.serhat.order.dto.object;
 
-import com.serhat.customer.entity.MembershipPlan;
+import com.serhat.order.entity.MembershipPlan;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record CustomerDTO(
+public record CustomerDto(
         Integer customerId,
         String name,
         String surname,

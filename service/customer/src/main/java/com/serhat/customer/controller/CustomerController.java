@@ -4,6 +4,9 @@ import com.serhat.customer.dto.object.AddressDTO;
 import com.serhat.customer.dto.object.CustomerDTO;
 import com.serhat.customer.dto.request.*;
 import com.serhat.customer.dto.response.*;
+import com.serhat.customer.entity.Customer;
+import com.serhat.customer.exception.CustomerNotFoundException;
+import com.serhat.customer.repository.CustomerRepository;
 import com.serhat.customer.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +21,7 @@ import java.util.List;
 @RequestMapping("/api/customers")
 public class CustomerController {
     private final CustomerService customerService;
+    private final CustomerRepository customerRepository;
 
     @PostMapping("/create")
     public ResponseEntity<CreateCustomerResponse> createCustomer(@Valid @RequestBody CreateCustomerRequest request){
@@ -64,10 +68,25 @@ public class CustomerController {
     public ResponseEntity<List<AddressDTO>> getAddresses(Principal p){
         return ResponseEntity.ok(customerService.getAddresses(p));
     }
+    @GetMapping("/address/{addressId}")
+    public ResponseEntity<AddressDTO> getAddressById(@PathVariable Integer addressId){
+        return ResponseEntity.ok(customerService.getAddressesById(addressId));
+    }
 
     @GetMapping("/testUrl")
     public String test(){
         return "Test ,if you see this , it's a secured app";
     }
+
+    // Api call between microservices
+    @PutMapping("/updateTotalOrders")
+    public ResponseEntity<Void> updateTotalOrders(@RequestParam int customerId, @RequestParam int increment) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found!"));
+        customer.setTotalOrders(customer.getTotalOrders() + increment);
+        customerRepository.save(customer);
+        return ResponseEntity.ok().build();
+    }
+
 
 }
