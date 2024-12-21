@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Updates on Product Service.">
-      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/dto/object/PriceHistoryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/dto/request/UpdateQuantityRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/dto/response/UpdateQuantityResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/exception/SameQuantityRequestException.java" afterDir="false" />
+    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Improvements on Product Service">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/repository/PriceHistoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/repository/PriceHistoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/product/src/main/java/com/serhat/product/service/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +167,7 @@
       <workItem from="1734461908019" duration="2335000" />
       <workItem from="1734620407295" duration="4824000" />
       <workItem from="1734698277049" duration="5055000" />
-      <workItem from="1734800740392" duration="466000" />
+      <workItem from="1734800740392" duration="1133000" />
     </task>
     <task id="LOCAL-00001" summary="Config Server , Server Discovery and Gateway created">
       <option name="closed" value="true" />
@@ -264,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734709643472</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Improvements on Product Service">
+      <option name="closed" value="true" />
+      <created>1734801448778</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1734801448778</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,6 +294,7 @@
     <MESSAGE value="Product Service Created , Detailed Audit Logging" />
     <MESSAGE value="New methods and improvements on product service" />
     <MESSAGE value="Updates on Product Service." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates on Product Service." />
+    <MESSAGE value="Improvements on Product Service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improvements on Product Service" />
   </component>
 </project>
