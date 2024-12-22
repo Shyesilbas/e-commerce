@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Order History method created">
-      <change afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/dto/responses/OrderDetailsResponse.java" afterDir="false" />
+    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Refactored Order Service , Order details and orders between time range methods added">
+      <change afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/dto/responses/CancelOrderResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/dto/responses/UpdateDeliveryAddressResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/exception/OrderCannotBeCancelledException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/dto/responses/OrderPlacedResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/dto/responses/OrderPlacedResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/repository/OrderRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/service/OrderService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,9 +83,9 @@
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.serhat.order.dto.responses" />
-      <recent name="com.serhat.order.dto.object" />
-      <recent name="com.serhat.order.dto.requests" />
       <recent name="com.serhat.order.exception" />
+      <recent name="com.serhat.order.dto.requests" />
+      <recent name="com.serhat.order.dto.object" />
       <recent name="com.serhat.order.entity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -186,7 +185,7 @@
       <workItem from="1734802389735" duration="521000" />
       <workItem from="1734805995307" duration="12065000" />
       <workItem from="1734861674139" duration="2286000" />
-      <workItem from="1734892050118" duration="5916000" />
+      <workItem from="1734892050118" duration="8572000" />
     </task>
     <task id="LOCAL-00001" summary="Config Server , Server Discovery and Gateway created">
       <option name="closed" value="true" />
@@ -308,7 +307,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734863969671</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Refactored Order Service , Order details and orders between time range methods added">
+      <option name="closed" value="true" />
+      <created>1734898616694</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1734898616694</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -342,6 +349,7 @@
     <MESSAGE value="Place Order method created" />
     <MESSAGE value="Place Order method created ," />
     <MESSAGE value="Order History method created" />
-    <option name="LAST_COMMIT_MESSAGE" value="Order History method created" />
+    <MESSAGE value="Refactored Order Service , Order details and orders between time range methods added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored Order Service , Order details and orders between time range methods added" />
   </component>
 </project>

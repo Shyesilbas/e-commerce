@@ -3,6 +3,7 @@ package com.serhat.order.controller;
 import com.serhat.order.dto.object.OrderDTO;
 import com.serhat.order.dto.requests.OrderRequest;
 import com.serhat.order.dto.requests.PlaceOrderRequestDTO;
+import com.serhat.order.dto.responses.CancelOrderResponse;
 import com.serhat.order.dto.responses.OrderDetailsResponse;
 import com.serhat.order.dto.responses.OrderHistoryResponse;
 import com.serhat.order.dto.responses.OrderPlacedResponse;
@@ -46,4 +47,8 @@ public class OrderController {
         return ResponseEntity.ok(orderService.orderDetails(principal,id));
     }
 
+    @PutMapping("/cancelOrder")
+    public ResponseEntity<CancelOrderResponse> cancelOrder (@RequestParam Integer id , Principal p){
+        return ResponseEntity.ok(orderService.cancelOrder(p,id));
+    }
 }

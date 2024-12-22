@@ -4,14 +4,12 @@ import com.serhat.order.client.CustomerClient;
 import com.serhat.order.client.ProductClient;
 import com.serhat.order.dto.object.*;
 import com.serhat.order.dto.requests.OrderRequest;
-import com.serhat.order.dto.responses.OrderDetailsResponse;
-import com.serhat.order.dto.responses.OrderHistoryResponse;
-import com.serhat.order.dto.responses.OrderPlacedResponse;
-import com.serhat.order.dto.responses.OrderProductResponse;
+import com.serhat.order.dto.responses.*;
 import com.serhat.order.entity.Order;
 import com.serhat.order.entity.OrderProduct;
 import com.serhat.order.entity.Status;
 import com.serhat.order.exception.CustomerNotFoundException;
+import com.serhat.order.exception.OrderCannotBeCancelledException;
 import com.serhat.order.exception.ProductNotFoundException;
 import com.serhat.order.repository.OrderProductRepository;
 import com.serhat.order.repository.OrderRepository;
@@ -33,6 +31,8 @@ public class OrderService {
     private final OrderProductRepository orderProductRepository;
     private final CustomerClient customerClient;
     private final ProductClient productClient;
+
+
 
     private String getTokenFromPrincipal(Principal principal) {
         if (principal instanceof JwtAuthenticationToken token) {
@@ -60,6 +60,11 @@ public class OrderService {
         return customer;
     }
 
+    public AddressDTO findAddressById(Integer addressId,Principal p) {
+        return customerClient.addressInfo(addressId,authHeader(p));
+    }
+
+
     private void validateAddress(Integer addressId, String authorizationHeader) {
         AddressDTO address = customerClient.addressInfo(addressId, authorizationHeader);
         if (address == null) {
@@ -74,6 +79,7 @@ public class OrderService {
             throw new RuntimeException("Check your address Id's!");
         }
     }
+
 
     private List<OrderProductResponse> getOrderProductResponses(List<OrderProduct> orderProducts) {
         return orderProducts.stream()
@@ -221,6 +227,34 @@ public class OrderService {
                 ))
                 .toList();
     }
+
+    public CancelOrderResponse cancelOrder (Principal p, Integer id){
+        CustomerDto customer = validateCustomer(p);
+        Order order = findOrderById(id);
+        List<OrderProduct> orderProduct = orderProducts(order.getId());
+        LocalDateTime orderDate = order.getOrderDate();
+        LocalDateTime cancelRequestDate = LocalDateTime.now();
+        if(orderDate.plusHours(1).isBefore(cancelRequestDate)){
+            throw new OrderCannotBeCancelledException("You have just 1 hour to cancel order.");
+        }
+        for (OrderProduct product : orderProduct) {
+            String productCode = product.getProductCode();
+            int quantity = product.getQuantity();
+
+            productClient.updateProductQuantity(productCode, -quantity, authHeader(p));
+        }
+        customerClient.updateTotalOrders(customer.customerId(),-1,authHeader(p));
+        order.setStatus(Status.CANCELLED);
+        orderRepository.save(order);
+        BigDecimal refundFee = order.getTotalPrice();
+
+        return new CancelOrderResponse(
+                "Order Cancelled SUCCESSFULLY",
+                refundFee,
+                cancelRequestDate
+        );
+    }
+
 
 
 
