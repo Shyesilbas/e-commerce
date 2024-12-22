@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -36,6 +37,7 @@ public class Order {
     @Column(nullable = false)
     private BigDecimal totalPrice;
 
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "order_date")
     private LocalDateTime orderDate;
 

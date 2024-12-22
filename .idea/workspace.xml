@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Place Order method created ,">
-      <change afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/dto/responses/OrderHistoryResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/dto/responses/OrderProductResponse.java" afterDir="false" />
+    <list default="true" id="d845fd60-eea9-4ab4-b09e-0188b17bfdfa" name="Changes" comment="Order History method created">
+      <change afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/dto/responses/OrderDetailsResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/controller/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/dto/responses/OrderPlacedResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/dto/responses/OrderPlacedResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/repository/OrderProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/repository/OrderProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/repository/OrderRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/Order/src/main/java/com/serhat/order/service/OrderService.java" afterDir="false" />
     </list>
@@ -187,7 +185,8 @@
       <workItem from="1734800740392" duration="1133000" />
       <workItem from="1734802389735" duration="521000" />
       <workItem from="1734805995307" duration="12065000" />
-      <workItem from="1734861674139" duration="2238000" />
+      <workItem from="1734861674139" duration="2286000" />
+      <workItem from="1734892050118" duration="5916000" />
     </task>
     <task id="LOCAL-00001" summary="Config Server , Server Discovery and Gateway created">
       <option name="closed" value="true" />
@@ -301,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734818279845</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Order History method created">
+      <option name="closed" value="true" />
+      <created>1734863969670</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1734863969671</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,6 +341,7 @@
     <MESSAGE value="Order Service created , Security and Api Configuration added , properties defined" />
     <MESSAGE value="Place Order method created" />
     <MESSAGE value="Place Order method created ," />
-    <option name="LAST_COMMIT_MESSAGE" value="Place Order method created ," />
+    <MESSAGE value="Order History method created" />
+    <option name="LAST_COMMIT_MESSAGE" value="Order History method created" />
   </component>
 </project>

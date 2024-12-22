@@ -12,7 +12,7 @@ public record OrderPlacedResponse(
         String message,
         String email,
         LocalDateTime orderDate,
-        List<OrderProductDto> orderProducts,
+        List<OrderProductResponse> orderProducts,
         BigDecimal price,
         AddressDTO address
 ) {
